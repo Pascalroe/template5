@@ -170,9 +170,35 @@ img {
     left: 0;
     right: 0;
     z-index: 1000;
-    background-color: var(--white);
-    box-shadow: var(--shadow);
+    background-color: #116530;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
     transition: var(--transition);
+}
+
+.header .logo-text {
+    color: #FFFFFF;
+}
+
+.header .logo-text span {
+    color: #FFFFFF;
+    opacity: 0.9;
+}
+
+.header .nav-link {
+    color: #FFFFFF;
+}
+
+.header .nav-link:hover,
+.header .nav-link.active {
+    color: #FFFFFF;
+}
+
+.header .nav-link::after {
+    background-color: #FFFFFF;
+}
+
+.header .hamburger span {
+    background-color: #FFFFFF;
 }
 
 .header.scrolled {
@@ -195,16 +221,16 @@ img {
 .logo-icon {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    background: #FFFFFF;
     border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--white);
+    color: #116530;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
-    box-shadow: 0 4px 15px rgba(17, 101, 48, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .logo-text {
@@ -256,6 +282,14 @@ img {
 
 .nav-cta {
     margin-left: 20px;
+    background: #FFFFFF;
+    color: #116530;
+    border: 2px solid #FFFFFF;
+}
+
+.nav-cta:hover {
+    background: transparent;
+    color: #FFFFFF;
 }
 
 .hamburger {
