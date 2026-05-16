@@ -1,5 +1,5 @@
 /* ============================================
-   SV Grünweiß Dortmund 1921 e.V. - Main JavaScript
+   TSV Alemannia Stuttgart 1921 e.V. - Main JavaScript
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', function() {
