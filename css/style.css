@@ -205,6 +205,15 @@ img {
     padding: 10px 0;
 }
 
+/* Hide header on scroll down */
+.header {
+    transition: transform 0.3s ease-in-out;
+}
+
+.header.header-hidden {
+    transform: translateY(-100%);
+}
+
 .header-inner {
     display: flex;
     align-items: center;

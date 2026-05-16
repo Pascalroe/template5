@@ -35,16 +35,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // ===== Header Scroll Effect =====
+    // ===== Header Hide/Show on Scroll =====
     const header = document.querySelector('.header');
+    let lastScrollY = window.scrollY;
+    let scrollDirection = 'none';
     
     if (header) {
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
+            const currentScrollY = window.scrollY;
+            
+            // Add scrolled class for background change
+            if (currentScrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
+            
+            // Hide header on scroll down, show on scroll up
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                // Scrolling down - hide header
+                header.classList.add('header-hidden');
+            } else {
+                // Scrolling up - show header
+                header.classList.remove('header-hidden');
+            }
+            
+            lastScrollY = currentScrollY;
         });
     }
     
