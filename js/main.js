@@ -272,7 +272,7 @@ function createScrollToTopButton() {
         right: 30px;
         width: 50px;
         height: 50px;
-        background-color: #116530;
+        background: linear-gradient(135deg, #116530, #e67e22);
         color: white;
         border: none;
         border-radius: 50%;
@@ -282,7 +282,7 @@ function createScrollToTopButton() {
         visibility: hidden;
         transition: all 0.3s ease;
         z-index: 999;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 15px rgba(17, 101, 48, 0.4);
     `;
     
     document.body.appendChild(btn);

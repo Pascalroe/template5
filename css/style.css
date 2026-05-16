@@ -7,14 +7,18 @@
     --primary-color: #116530;
     --primary-dark: #0d4f26;
     --primary-light: #1a7a44;
+    --accent-color: #e67e22;
+    --accent-gold: #f39c12;
+    --accent-warm: #d35400;
     --white: #FFFFFF;
     --dark-gray: #222222;
-    --light-gray: #F4F4F4;
+    --light-gray: #F9F7F2;
+    --warm-white: #FFFEF8;
     --gray: #666666;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
+    --shadow: 0 4px 20px rgba(17, 101, 48, 0.15);
+    --shadow-hover: 0 12px 40px rgba(17, 101, 48, 0.25);
     --transition: all 0.3s ease;
-    --border-radius: 12px;
+    --border-radius: 16px;
     --max-width: 1200px;
 }
 
@@ -34,7 +38,7 @@ body {
     font-size: 16px;
     line-height: 1.6;
     color: var(--dark-gray);
-    background-color: var(--white);
+    background-color: var(--warm-white);
     overflow-x: hidden;
 }
 
@@ -109,12 +113,30 @@ img {
 }
 
 .btn-primary {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
     color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-gold));
+    transition: all 0.4s ease;
+    z-index: -1;
+}
+
+.btn-primary:hover::before {
+    left: 0;
 }
 
 .btn-primary:hover {
-    background-color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-gold));
     transform: translateY(-2px);
     box-shadow: var(--shadow-hover);
 }
@@ -173,8 +195,8 @@ img {
 .logo-icon {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-    border-radius: 12px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -182,6 +204,7 @@ img {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
+    box-shadow: 0 4px 15px rgba(17, 101, 48, 0.3);
 }
 
 .logo-text {
@@ -257,11 +280,34 @@ img {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, rgba(17, 101, 48, 0.95), rgba(26, 122, 68, 0.9)),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+    background: var(--primary-color);
+    padding-top: 80px;
+    overflow: hidden;
+}
+
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1600');
     background-size: cover;
     background-position: center;
-    padding-top: 80px;
+    opacity: 0.4;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(17, 101, 48, 0.92) 0%, 
+        rgba(26, 122, 68, 0.85) 50%,
+        rgba(230, 126, 34, 0.3) 100%);
+    z-index: 1;
 }
 
 .hero::before {
@@ -273,6 +319,7 @@ img {
     bottom: 0;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><circle cx="200" cy="200" r="150" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="50"/></svg>');
     background-size: cover;
+    z-index: 1;
 }
 
 .hero-content {
@@ -283,14 +330,20 @@ img {
 
 .hero-badge {
     display: inline-block;
-    background-color: rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-gold));
     color: var(--white);
     padding: 8px 20px;
     border-radius: 50px;
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 25px;
-    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 
 .hero h1 {
@@ -330,6 +383,10 @@ img {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--white);
+    background: linear-gradient(135deg, var(--white), var(--accent-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero-stat-label {
@@ -396,7 +453,7 @@ img {
 .about-feature-icon {
     width: 40px;
     height: 40px;
-    background-color: rgba(17, 101, 48, 0.1);
+    background: linear-gradient(135deg, rgba(17, 101, 48, 0.1), rgba(230, 126, 34, 0.1));
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -433,11 +490,23 @@ img {
     position: relative;
     height: 200px;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--white);
     font-size: 4rem;
+}
+
+.team-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(17, 101, 48, 0.8) 100%);
 }
 
 .team-content {
@@ -499,7 +568,7 @@ img {
 }
 
 .event-date {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: var(--white);
     padding: 20px;
     text-align: center;
@@ -573,12 +642,25 @@ img {
 
 .news-image {
     height: 200px;
-    background: linear-gradient(135deg, #2a2a2a, #4a4a4a);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--white);
     font-size: 3rem;
+    position: relative;
+}
+
+.news-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(17, 101, 48, 0.6) 100%);
 }
 
 .news-content {
@@ -619,8 +701,20 @@ img {
 
 /* ----- Stats Section ----- */
 .stats {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 50%, var(--accent-color) 100%);
     padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.stats::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(243, 156, 18, 0.2) 0%, transparent 70%);
 }
 
 .stats-grid {
@@ -640,6 +734,10 @@ img {
     font-weight: 700;
     line-height: 1;
     margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--white), var(--accent-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .stat-label {
@@ -658,10 +756,28 @@ img {
     position: relative;
     aspect-ratio: 1;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    background-size: cover;
+    background-position: center;
     border-radius: var(--border-radius);
     overflow: hidden;
     cursor: pointer;
     transition: var(--transition);
+}
+
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(17, 101, 48, 0.7) 100%);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
 }
 
 .gallery-item:hover {
@@ -695,9 +811,22 @@ img {
 
 /* ----- CTA Section ----- */
 .cta-section {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 50%, var(--accent-color) 100%);
     padding: 80px 0;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><circle cx="200" cy="200" r="150" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+    background-size: cover;
 }
 
 .cta-content h2 {
@@ -812,9 +941,22 @@ img {
 
 /* ----- Page Header ----- */
 .page-header {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 50%, var(--accent-color) 100%);
     padding: 150px 0 80px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><circle cx="200" cy="200" r="150" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>');
+    background-size: cover;
 }
 
 .page-header h1 {
@@ -924,12 +1066,25 @@ img {
 .trainer-image {
     width: 100%;
     height: 200px;
-    background: linear-gradient(135deg, #666, #888);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--white);
     font-size: 3rem;
+    position: relative;
+}
+
+.trainer-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(17, 101, 48, 0.7) 100%);
 }
 
 .trainer-info {
@@ -1480,7 +1635,7 @@ img {
 .fade-in-on-scroll {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .fade-in-on-scroll.visible {
