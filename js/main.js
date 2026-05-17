@@ -38,19 +38,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== Header Hide/Show on Scroll =====
     const header = document.querySelector('.header');
     let lastScrollY = window.scrollY;
-    let scrollDirection = 'none';
-    
+
     if (header) {
         window.addEventListener('scroll', function() {
+            // Only apply header hide/show on mobile (max-width: 768px)
+            if (window.innerWidth > 768) {
+                return;
+            }
+
             const currentScrollY = window.scrollY;
-            
+
             // Add scrolled class for background change
             if (currentScrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
-            
+
             // Hide header on scroll down, show on scroll up
             if (currentScrollY > lastScrollY && currentScrollY > 100) {
                 // Scrolling down - hide header
@@ -59,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Scrolling up - show header
                 header.classList.remove('header-hidden');
             }
-            
+
             lastScrollY = currentScrollY;
         });
     }

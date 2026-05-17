@@ -210,10 +210,6 @@ img {
     transition: transform 0.3s ease-in-out;
 }
 
-.header.header-hidden {
-    transform: translateY(-100%);
-}
-
 .header-inner {
     display: flex;
     align-items: center;
@@ -1742,7 +1738,11 @@ img {
     .hamburger.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
     }
-    
+
+    .header.header-hidden {
+        transform: translateY(-100%);
+    }
+
     .hero h1 {
         font-size: 2.5rem;
     }
