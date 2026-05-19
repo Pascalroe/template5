@@ -341,3 +341,28 @@ window.addEventListener('scroll', function() {
         hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
     }
 }, { passive: true });
+
+// ===== Mobile Gallery Reorder =====
+function reorderGalleryMobile() {
+    const gallery = document.getElementById('gallery');
+    const teamsSection = document.querySelector('.section.section-light'); // Teams section
+    
+    if (gallery && teamsSection && window.innerWidth < 768) {
+        // Only move if not already moved
+        if (!gallery.dataset.moved) {
+            teamsSection.parentNode.insertBefore(gallery, teamsSection.nextSibling);
+            gallery.dataset.moved = 'true';
+        }
+    } else if (gallery && gallery.dataset.moved && window.innerWidth >= 768) {
+        // Move back on desktop
+        const originalNext = document.querySelector('.stats');
+        if (originalNext) {
+            originalNext.parentNode.insertBefore(gallery, originalNext);
+            gallery.dataset.moved = 'false';
+        }
+    }
+}
+
+// Run on load and resize
+reorderGalleryMobile();
+window.addEventListener('resize', reorderGalleryMobile);
