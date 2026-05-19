@@ -1893,6 +1893,11 @@ img {
     .gallery-more {
         min-width: 80%;
     }
+    
+    /* Hide scroll-to-top button on mobile - conflicts with bottom nav */
+    .scroll-to-top {
+        display: none !important;
+    }
 }
 
 @media (max-width: 480px) {
